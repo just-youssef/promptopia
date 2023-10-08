@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 
 import PromptCard from "./PromptCard";
-import LoadPage from "./LoadPage";
 
 
 const PromptCardList = ({ data, handleTagClick }) => {
@@ -68,8 +67,7 @@ const Feed = () => {
     setSearchedResults(searchResult);
   };
 
-  console.log(allPosts);
-
+  // console.log(allPosts);
   return (
     <section className='feed'>
       <input
