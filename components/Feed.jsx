@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 
 import PromptCard from "./PromptCard";
 
@@ -20,6 +21,7 @@ const PromptCardList = ({ data, handleTagClick }) => {
 
 const Feed = () => {
   const [allPosts, setAllPosts] = useState([]);
+  const { data: session } = useSession();
 
   // Search states
   const [searchText, setSearchText] = useState("");
@@ -28,12 +30,12 @@ const Feed = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch("/api/prompt");
-      const data = await response.json();
+      const res = await fetch(`/api/users/${session?.user.id}/posts`);
+      const data = await res.json();
       setAllPosts(data);
-    };
-
-    fetchPosts();
+    }
+    // console.log(posts);
+    session?.user.id && fetchPosts();
   }, []);
 
   const filterPrompts = (searchtext) => {
