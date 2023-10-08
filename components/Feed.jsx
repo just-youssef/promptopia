@@ -33,7 +33,7 @@ const Feed = () => {
       setAllPosts(data);
     };
 
-    true && fetchPosts();
+    fetchPosts();
   }, []);
 
   const filterPrompts = (searchtext) => {
