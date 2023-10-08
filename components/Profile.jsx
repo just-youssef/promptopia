@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Profile = ({ name, img, desc, data, handleEdit, handleDelete }) => {
   return (
-    <section className='w-full flex flex-col items-center'>
+    <section className='w-full flex flex-col items-center mx-auto'>
       <div className='flex items-center head_text'>
         <Image
           src={img}
