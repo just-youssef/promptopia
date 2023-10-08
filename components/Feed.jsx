@@ -28,12 +28,12 @@ const Feed = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch("/api/prompt");
-      const data = await response.json();
-      setAllPosts(data);
-    };
-
-    fetchPosts();
+      const res = await fetch(`/api/users/${session?.user.id}/posts`);
+      const data = await res.json();
+      setPosts(data);
+    }
+    // console.log(posts);
+    session?.user.id && fetchPosts();
   }, []);
 
   const filterPrompts = (searchtext) => {
