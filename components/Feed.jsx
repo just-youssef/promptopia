@@ -68,7 +68,7 @@ const Feed = () => {
     setSearchedResults(searchResult);
   };
 
-  // console.log(allPosts);
+  console.log(allPosts);
 
   return (
     <section className='feed'>
