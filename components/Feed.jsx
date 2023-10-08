@@ -28,7 +28,7 @@ const Feed = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch("/api/prompt", {cache: "no-store"});
+      const response = await fetch("/api/prompt");
       const data = await response.json();
 
       setAllPosts(data);
@@ -79,14 +79,13 @@ const Feed = () => {
       />
 
       {/* All Prompts */}
-      {searchText ? (
+      {searchText ? 
         <PromptCardList
           data={searchedResults}
           handleTagClick={handleTagClick}
         />
-      ) : (
-        <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
-      )}
+        : <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
+      }
     </section>
   );
 };
