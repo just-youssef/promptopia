@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Profile = ({ name, img, desc, data, handleEdit, handleDelete }) => {
   return (
-    <section className='w-full'>
+    <section className='w-full flex flex-col items-center'>
       <div className='flex items-center head_text'>
         <Image
           src={img}
@@ -16,7 +16,7 @@ const Profile = ({ name, img, desc, data, handleEdit, handleDelete }) => {
       </div>
       <p className='desc text-left'>{desc}</p>
 
-      <div className='mt-10 prompt_layout'>
+      <div className='prompt_layout'>
         {data.map((post) => (
           <PromptCard
             key={post._id}
