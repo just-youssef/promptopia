@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const Loading = () => {
+const LoadPage = () => {
   return (
     <div className='w-full flex-center'>
       <Image
@@ -14,4 +14,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default LoadPage;

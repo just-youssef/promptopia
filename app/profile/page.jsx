@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Profile from 'components/Profile';
+import LoadPage from 'components/LoadPage';
+
 
 const UserProfile = () => {
     const router = useRouter();
@@ -44,21 +46,23 @@ const UserProfile = () => {
           }
     }
     return (
-      {
-        ...session?.user ?
-        <Profile
-          name={session?.user.name}
-          img={session?.user.image}
-          desc="Welcome to your personalized profile page"
-          data={posts}
-          handleEdit={handleEdit}
-          handleDelete={handleDelete}
-        />
-        :
-        <div className='w-full flex flex-col items-center'>
-          <p className="text-4xl font-semibold">You are not Signed In !</p>
-        </div>
-      }
+      <>{
+          session?.user ?
+          !(session?.user.name && session?.user.image)? <LoadPage />
+          :
+          <Profile
+            name={session?.user.name}
+            img={session?.user.image}
+            desc="Welcome to your personalized profile page"
+            data={posts}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+          />
+          :
+          <div className='w-full flex flex-col items-center'>
+            <p className="text-4xl font-semibold">You are not Signed In !</p>
+          </div>
+        }</>
     )
 }
 

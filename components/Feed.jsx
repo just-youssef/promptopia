@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 
 import PromptCard from "./PromptCard";
+import LoadPage from "./LoadPage";
+
 
 const PromptCardList = ({ data, handleTagClick }) => {
   return (
@@ -28,7 +30,7 @@ const Feed = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch("/api/prompt/all");
+      const response = await fetch("/api/prompt");
       const data = await response.json();
       setAllPosts(data);
     };
@@ -66,6 +68,8 @@ const Feed = () => {
     setSearchedResults(searchResult);
   };
 
+  // console.log(allPosts);
+
   return (
     <section className='feed'>
       <input
@@ -77,13 +81,10 @@ const Feed = () => {
         className='search_input peer'
       />
 
-      {/* All Prompts */}
-      {searchText ? 
-        <PromptCardList
-          data={searchedResults}
-          handleTagClick={handleTagClick}
-        />
-        : <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
+      {/* All Prompts */
+        searchText ?  <PromptCardList data={searchedResults} handleTagClick={handleTagClick} />
+        :
+        <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
       }
     </section>
   );

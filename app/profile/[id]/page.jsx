@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Profile from "components/Profile";
+import LoadPage from "components/LoadPage";
 
 const UserProfile = ({ params }) => {
   const [user, setUser] = useState({});
@@ -29,12 +30,16 @@ const UserProfile = ({ params }) => {
   session?.user.id === params.id && router.push('/profile')
 
   return (
-    <Profile
-      name={user.username}
-      img={user.image}
-      desc={`Welcome to ${user.username}'s personalized profile page. Explore ${user.username}'s exceptional prompts and be inspired by the power of their imagination`}
-      data={userPosts}
-    />
+    <>{
+        !(user.username && user.image)? <LoadPage />
+        :
+        <Profile
+          name={user.username}
+          img={user.image}
+          desc={`Welcome to ${user.username}'s personalized profile page. Explore ${user.username}'s exceptional prompts and be inspired by the power of their imagination`}
+          data={userPosts}
+        />
+    }</>
   );
 };
 
